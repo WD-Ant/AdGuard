@@ -30,5 +30,5 @@ chrome.declarativeNetRequest.updateDynamicRules({
             urlFilter: url
         }
     })),
-    removeRuleIds: Array.from({ length: urlsToBlock.length }, (index) => index + 1)
+    removeRuleIds: Array.from({ length: urlsToBlock.length }, (_, index) => index + 1)
 });
