@@ -35,10 +35,4 @@ const newRules = urlsToBlock.map((url, index) => ({
 chrome.declarativeNetRequest.updateDynamicRules({
     addRules: newRules,
     removeRuleIds: ruleIdsToRemove
-}, () => {
-    if (chrome.runtime.lastError) {
-        console.error('Error updating rules:', chrome.runtime.lastError);
-    } else {
-        console.log('Rules updated successfully.');
-    }
 });
