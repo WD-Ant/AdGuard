@@ -21,14 +21,24 @@ const urlsToBlock = [
     "*://*.adk2x.com/*"
 ];
 
+const ruleIdsToRemove = Array.from({ length: urlsToBlock.length }, (_, index) => index + 1).map(id => Math.floor(id));
+
+const newRules = urlsToBlock.map((url, index) => ({
+    id: index + 1,
+    priority: 1,
+    action: { type: 'block' },
+    condition: {
+        urlFilter: url
+    }
+}));
+
 chrome.declarativeNetRequest.updateDynamicRules({
-    addRules: urlsToBlock.map((url, index) => ({
-        id: index + 1,
-        priority: 1,
-        action: { type: 'block' },
-        condition: {
-            urlFilter: url
-        }
-    })),
-    removeRuleIds: Array.from({ length: urlsToBlock.length }, (_, index) => index + 1)
+    addRules: newRules,
+    removeRuleIds: ruleIdsToRemove
+}, () => {
+    if (chrome.runtime.lastError) {
+        console.error('Error updating rules:', chrome.runtime.lastError);
+    } else {
+        console.log('Rules updated successfully.');
+    }
 });
