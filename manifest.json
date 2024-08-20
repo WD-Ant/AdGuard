@@ -1,0 +1,22 @@
+{
+    "name": "AdShield",
+    "version": "1.0",
+    "description": "Basic AdBlocker",
+    "permissions": [
+      "declarativeNetRequest",
+      "declarativeNetRequestFeedback"
+    ],
+    "host_permissions": [
+      "*://*/*"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "icons": {
+      "16": "/icons/16x16.png",
+      "48": "/icons/48x48.png",
+      "128": "/icons/128x128.png"
+    },
+    "manifest_version": 3
+}
+  
